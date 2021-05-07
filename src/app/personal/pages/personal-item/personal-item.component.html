@@ -1,0 +1,94 @@
+<form [formGroup]="personalForm" (ngSubmit)="save()">
+  <div class="row">
+    <div class="col-12 mt-3">
+      <div class="form-group">
+        <label for="name">Имя</label>
+        <input
+          type="text"
+          class="form-control"
+          id="name"
+          placeholder="Имя"
+          formControlName="name"
+          [ngClass]="{
+            'has-error':
+              personalForm.get('name')?.invalid &&
+              personalForm.get('name')?.touched
+          }"
+        />
+        <small id="nameHelp" class="form-text text-muted"
+          >Обязательное поле, длинной до 100 символов.</small
+        >
+      </div>
+    </div>
+    <div class="col-12 mt-3">
+      <div class="form-group">
+        <label for="surname">Фамилия</label>
+        <input
+          type="text"
+          class="form-control"
+          id="surname"
+          placeholder="Фамилия"
+          formControlName="surname"
+          [ngClass]="{
+            'has-error':
+              personalForm.get('surname')?.invalid &&
+              personalForm.get('surname')?.touched
+          }"
+        />
+        <small id="surnameHelp" class="form-text text-muted"
+          >Обязательное поле, длинной до 100 символов.</small
+        >
+      </div>
+    </div>
+    <div class="col-12 mt-3">
+      <div class="form-group">
+        <label for="patronymic">Отчество</label>
+        <input
+          type="text"
+          class="form-control"
+          id="patronymic"
+          placeholder="Отчество"
+          formControlName="patronymic"
+          [ngClass]="{
+            'has-error':
+              personalForm.get('patronymic')?.invalid &&
+              personalForm.get('patronymic')?.touched
+          }"
+        />
+      </div>
+    </div>
+    <div class="col-12 mt-3">
+      <div class="form-group form-check">
+        <input
+          type="checkbox"
+          class="form-check-input"
+          id="ready"
+          formControlName="ready"
+        />
+        <label class="form-check-label" for="ready"
+          >Согласен на обработку персонаьных данных</label
+        >
+      </div>
+    </div>
+  </div>
+  <hr />
+  <div class="row">
+    <div class="col-12">
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="personalForm.invalid"
+      >
+        Сохранить
+      </button>
+      <button
+        type="button"
+        class="btn btn-danger ms-2"
+        *ngIf="id"
+        (click)="delete()"
+      >
+        Удалить
+      </button>
+    </div>
+  </div>
+</form>
